@@ -29,10 +29,39 @@ function imprimirContactos() {
 // imprimir
 imprimirContactos();
 
-agregarContacto("Ana García");
-agregarContacto("Carlos Ramírez");
+agregarContacto(1, "Ana", "García", 95874453, [{ ciudad: "Tegucigalpa", direccion: "las vegas" }]);
+agregarContacto(2, "Luis", "Mendez", 54987165, [{ ciudad: "San Pedro Sula", direccion: "col.las colinas"}]);
+agregarContacto(3, "Marta", "Lopez", 95785635, [{ ciudad: "La Ceiba", direccion: "col.la palma"}]);
 
 
 borrarContacto("María Mendez");
 borrarContacto("Juan Gamez");
 imprimirContactos();
+
+
+//Ajuste de funciones agregar contacto y eliminar contacto
+function agregarContacto(id, nombres, apellidos, telefono, ubicaciones)  {
+  const nuevoContacto = {
+    id,
+    nombres,
+    apellidos,
+    telefono,
+    ubicaciones: {
+      ciudad: "",
+      direccion: "",
+    },
+  };
+  contactos.push(nuevoContacto);
+
+}
+
+// Función para eliminar un contacto por su ID
+function eliminarContacto(id) {
+  const index = contactos.findIndex(contacto => contacto.id === id);
+  if (index !== -1) {
+    contactos.splice(index, 1);
+  }
+}
+
+eliminarContacto(2);
+console.log(contactos);
